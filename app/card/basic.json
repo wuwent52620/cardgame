@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "name": "杀",
+      "info": {
+        "black_tao": 7,
+        "fang_": 6,
+        "mei_hua": 14,
+        "red_tao": 3
+      }
+    },
+    {
+      "name": "闪",
+      "info": {
+        "black_tao": 0,
+        "fang_": 12,
+        "mei_hua": 0,
+        "red_tao": 3
+      }
+    },
+    {
+      "name": "桃",
+      "info": {
+        "black_tao": 0,
+        "fang_": 2,
+        "mei_hua": 0,
+        "red_tao": 6
+      }
+    }
+  ]
+}
