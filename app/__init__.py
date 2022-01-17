@@ -49,6 +49,3 @@ def create_server():
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
-
-def init_card(file):
-

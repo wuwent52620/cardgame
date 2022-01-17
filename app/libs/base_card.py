@@ -1,61 +1,53 @@
-from queue import Queue
-base_queue = Queue(12)
+from collections import deque
+
+from app.config import kind_list
+
+card_gen = {key: deque(range(1, 13)) for key in kind_list}
+
 info_card = ['BasicCard']
 base_attrs = {'name', 'kind', 'number', 'image', 'info'}
 
 
-class _BaseDecor(object):
-    __instance = None
-    __full_size = 0
-    __size = -1
+def gen_card(kind, num=None):
+    _num = num
 
-    def __new__(cls, *args, **kwargs):
-        if cls.__size < cls.__full_size:
-            cls.__instance = super().__new__(cls)
-            cls.__size += 1
-            return cls.__instance
-        else:
-            return cls.__instance
+    def __gen_card(kind, num=100):
+        if _num:
+            num = _num
+        for n in range(num):
+            res = card_gen[kind].popleft()
+            card_gen[kind].append(res)
+            yield kind, res
 
-    def __init__(self, size):
-        _BaseDecor.__full_size += size
+    return __gen_card(kind, num)
 
+
+class Blood(object):
     def __set__(self, instance, value):
-        if instance(value, dict) and set(value.keys()) == base_attrs:
-            if value['number'] >= 12:
-                value['number'] = 12
-            if value['number'] <= 1:
-                value['number'] = 1
-            for k, v in value.items():
-                setattr(instance, k, v)
-        else:
-            raise AttributeError('Cards json file is error')
+        print(instance, value)
+        if value < 0:
+            setattr(instance, 'alive', False)
+        setattr(instance, '_blood', value)
+
+    def __get__(self, instance, owner):
+        return getattr(instance, '_blood')
 
 
-class Number(object):
-
-    def __set__(self, instance, value):
-        if value < 1:
-            setattr(instance, 'number', 1)
-
-
-
-def create_info_queue():
-    for i in range(1, 13):
-        pass
+class CardMixin(object):
+    def use(self, func, targets):
+        for target in targets:
+            func = getattr(self, func)
+            func(target)
 
 
-class CardMeta(type):
-    def __new__(cls, clsname, bases, clsdict):
-        if clsname not in info_card:
-            return super().__new__(cls, clsname, bases, clsdict)
+class RoleCard(CardMixin):
+    __slots__ =
+    blood = Blood()
+
+    def __init__(self, **kwargs):
+        [setattr(self, key, value) for key, value in kwargs.items()]
+        self.alive = True
 
 
 class BaseCard(metaclass=CardMeta):
     __slots__ = ['name', 'kind', 'number', 'image', 'info']
-    __red_tao = red_tao()
-    __mei_hua = mei_hua()
-    __fang = fang_()
-    __black_tao = black_tao()
-
-    def __init__(self, kind, number):

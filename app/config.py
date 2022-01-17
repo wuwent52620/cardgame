@@ -14,4 +14,4 @@ config = dict(
     db_name='card_game'
 )
 
-
+kind_list = ["black_tao", "fang_", "mei_hua", "red_tao"]

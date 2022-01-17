@@ -6,14 +6,16 @@
       "info": "喜欢青鸟的男人",
       "belong": "北凉",
       "blood": 4,
-      "skill": "[测试，可以通过测试知道能不能行],[复制，众所周知，CV大法好呀]"
+      "skill": "[测试，可以通过测试知道能不能行],[复制，众所周知，CV大法好呀]",
+      "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
     },
     {
       "name": "李四",
       "info": "喜欢青鸟的女人",
       "belong": "北凉",
       "blood": 3,
-      "skill": "[嘲讽，嘲讽你太菜了],[跳舞，醉里挑灯看剑妾舞阑珊]"
+      "skill": "[嘲讽，嘲讽你太菜了],[跳舞，醉里挑灯看剑妾舞阑珊]",
+      "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
     }
   ]
 }
