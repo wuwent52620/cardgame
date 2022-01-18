@@ -1,6 +1,8 @@
+import json
+import os
 from collections import deque
 
-from app.config import kind_list
+from app.config import kind_list, root_path
 
 card_gen = {key: deque(range(1, 13)) for key in kind_list}
 
@@ -41,7 +43,7 @@ class CardMixin(object):
 
 
 class RoleCard(CardMixin):
-    __slots__ =
+    __slots__ = []
     blood = Blood()
 
     def __init__(self, **kwargs):
@@ -49,5 +51,17 @@ class RoleCard(CardMixin):
         self.alive = True
 
 
+class CardMeta(type):
+    def __new__(cls, clsname, clsbase, clsdict):
+        file_path = os.path.join(root_path, 'card', f'{clsname.lower()}.json')
+        with open(file_path, 'rb') as fl:
+            base_info = json.load(fl)
+            clsdict.update(_base_info=base_info)
+        return super().__new__(cls, clsname, clsbase, clsdict)
+
+
 class BaseCard(metaclass=CardMeta):
     __slots__ = ['name', 'kind', 'number', 'image', 'info']
+
+
+print(BaseCard.__subclasses__())
