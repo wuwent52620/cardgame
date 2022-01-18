@@ -2,19 +2,43 @@
   "version": 1,
   "cards": [
     {
-      "name": "张三",
-      "info": "喜欢青鸟的男人",
-      "belong": "北凉",
-      "blood": 4,
+      "name": "胡作超",
+      "info": "才华横溢的男人",
+      "belong": "苏州",
+      "blood": 3,
       "skill": "[测试，可以通过测试知道能不能行],[复制，众所周知，CV大法好呀]",
       "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
     },
     {
-      "name": "李四",
-      "info": "喜欢青鸟的女人",
-      "belong": "北凉",
+      "name": "孙礼仁",
+      "info": "爱好打排球的男人",
+      "belong": "安徽",
+      "blood": 4,
+      "skill": "[嘲讽，嘲讽你太菜了],[跳舞，男人必须得会跳舞]",
+      "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
+    },
+    {
+      "name": "何曙光",
+      "info": "不明觉厉的男人",
+      "belong": "淮南",
       "blood": 3,
-      "skill": "[嘲讽，嘲讽你太菜了],[跳舞，醉里挑灯看剑妾舞阑珊]",
+      "skill": "[吹嘘，你在怕啥],[锁定，冲就完事了]",
+      "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
+    },
+    {
+      "name": "杨希柳",
+      "info": "拖延症晚期患者",
+      "belong": "上饶",
+      "blood": 4,
+      "skill": "[自擂，相信哥就完事了],[操作，我李白贼六~~]",
+      "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
+    },
+    {
+      "name": "吴文童",
+      "info": "对，就是作者本人",
+      "belong": "苏州",
+      "blood": 3,
+      "skill": "[不屈，对，就是我写的bug],[低调，希望尽快完成吧！]",
       "image": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F94%2F31%2F5156f2c1be3b7af.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645030651&t=537f4512b947be0c22b082592b3761d9"
     }
   ]
