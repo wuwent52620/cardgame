@@ -31,3 +31,4 @@ source myenv/bin/activate
    python manage.py --port=8006
 ```
 
+![Alt text](https://github.com/wuwent52620/cardgame/blob/master/app/static/readme.png?raw=true)

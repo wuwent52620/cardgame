@@ -3,6 +3,7 @@ import os
 import random
 
 from collections import deque
+
 from app.config import kind_list, root_path
 
 card_gen = {key: deque(range(1, 13)) for key in kind_list}
@@ -38,9 +39,16 @@ class Blood(object):
 class CardMeta(type):
     def __new__(cls, clsname, clsbase, clsdict):
         file_path = os.path.join(root_path, 'card', f'{clsname.lower()}.json')
-        with open(file_path, 'rb') as fl:
-            base_info = json.load(fl)
-            clsdict.update(base_info=base_info)
+        if not clsname.lower().startswith('base'):
+            with open(file_path, 'rb') as fl:
+                base_info = json.load(fl)
+                if clsname.lower().split('card')[0] in os.environ.get('card').split():
+                    print(f'{clsname.lower()}版本有变， 即将更新数据库')
+                    clsdict.update(reload=True)
+                else:
+                    print(f'{clsname.lower()}版本未变更')
+
+                clsdict.update(base_info=base_info)
         return super().__new__(cls, clsname, clsbase, clsdict)
 
 
@@ -68,6 +76,10 @@ class RoleCard(CardMixin, metaclass=CardMeta):
 
     def __repr__(self):
         return f"{self.name}--{self.info}"
+
+
+class BaseCard(CardMixin, metaclass=CardMeta):
+    pass
 
 
 if __name__ == '__main__':

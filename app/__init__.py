@@ -1,5 +1,5 @@
 # encoding: utf-8
-import pickle
+import os
 
 import tornado.web
 import tornado.httpserver
@@ -19,6 +19,8 @@ orm = ORM()
 define("host", default="0.0.0.0", type=str, help="监听主机")
 define("port", default=8000, type=int, help="监听端口")
 define("db", default=None, type=str, help="数据库初使化或迁移")
+define("card", default='', type=str, help="需要重新reload的卡牌类型")
+define("version", default='', type=str, help="所用的卡牌的版本号")
 
 
 # 1.自定义app
@@ -42,7 +44,9 @@ class Application(tornadoApp):
 def create_server():
     # 允许在命令行启动
     tornado.options.parse_command_line()
+    os.environ.update(card=options.card, version=options.version)
     # 创建http服务
+    from app.libs import base_card
     http_server = tornado.httpserver.HTTPServer(Application())
 
     # 绑定监听端口
