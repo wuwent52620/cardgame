@@ -19,8 +19,8 @@ orm = ORM()
 define("host", default="0.0.0.0", type=str, help="监听主机")
 define("port", default=8000, type=int, help="监听端口")
 define("db", default=None, type=str, help="数据库初使化或迁移")
-define("card", default='', type=str, help="需要重新reload的卡牌类型")
-define("version", default='', type=str, help="所用的卡牌的版本号")
+define("card", default='', type=str, help="需要重新reload的卡牌类型, 可以是多个(空格隔开)")
+define("version", default='', type=str, help="所用卡牌的版本号(此功能后续再说，先支持着)")
 
 
 # 1.自定义app

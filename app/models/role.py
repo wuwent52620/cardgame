@@ -6,7 +6,7 @@ from app.models import BaseModel, model_to_dict
 
 
 class Role(BaseModel):
-    __tablename__ = 'role'
+    __tablename__ = 'Role'
     name = Column('name', String(16), unique=True, nullable=False)
     info = Column('info', String(32), nullable=False)
     belong = Column('belong', String(16), nullable=False)
