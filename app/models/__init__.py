@@ -5,7 +5,6 @@ from datetime import datetime
 from sqlalchemy.orm import class_mapper
 
 from app.config import root_path
-from app.libs.base_card import BaseCard
 
 card_path = os.path.join(root_path, 'card')
 
@@ -18,7 +17,7 @@ orm = ORM()
 engine = orm.get_engine()
 
 
-class BaseModel(Base, BaseCard):
+class BaseModel(Base):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
     create_time = Column('create_time', DateTime(), default=datetime.now)
@@ -30,7 +29,3 @@ def model_to_dict(model):
     for key, column in class_mapper(model.__class__).c.items():
         model_dict[column.name] = getattr(model, key, None)
     return model_dict
-
-
-def init_data(session, name):
-    pass

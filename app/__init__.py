@@ -1,5 +1,6 @@
 # encoding: utf-8
 import os
+from contextlib import contextmanager
 
 import tornado.web
 import tornado.httpserver
@@ -21,6 +22,19 @@ define("port", default=8000, type=int, help="监听端口")
 define("db", default=None, type=str, help="数据库初使化或迁移")
 define("card", default='', type=str, help="需要重新reload的卡牌类型, 可以是多个(空格隔开)")
 define("version", default='', type=str, help="所用卡牌的版本号(此功能后续再说，先支持着)")
+
+
+# 使用上下文管理器封装session的建立和关闭，这样就不用手动关闭session
+@contextmanager
+def session_maker(session):
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
 
 
 # 1.自定义app
@@ -46,10 +60,7 @@ def create_server():
     tornado.options.parse_command_line()
     os.environ.update(card=options.card, version=options.version)
     # 创建http服务
-    from app.libs import base_card
     http_server = tornado.httpserver.HTTPServer(Application())
-
     # 绑定监听端口
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
-

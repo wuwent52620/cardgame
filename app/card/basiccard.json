@@ -11,19 +11,19 @@
       },
       "info": "kill---",
       "func": "reduce_blood",
-      "image": "https://cn.bing.com/images/search?view=detailV2&ccid=SVsuxdcV&id=47C80B47F499F17B3888C97A6DA4DC6D32DC5836&thid=OIP.SVsuxdcV6SR1jlOEz4iN_gHaIJ&mediaurl=https%3a%2f%2fwww.kids-world.com%2fimages%2f%c3%98E385.jpg&exph=749&expw=681&q=w&simid=608008970916605986&FORM=IRPRST&ck=024F1129FB787020CE9D060D58E60CBD&selectedIndex=29"
+      "image": "https://cn.bing.com/images/"
     },
     {
       "name": "闪",
       "number": {
-        "black_tao": 0,
+        "black_tao": 32,
         "fang_": 12,
         "mei_hua": 0,
         "red_tao": 3
       },
       "info": "flash---",
       "func": "cancel_kill",
-      "image": "https://cn.bing.com/images/search?view=detailV2&ccid=SVsuxdcV&id=47C80B47F499F17B3888C97A6DA4DC6D32DC5836&thid=OIP.SVsuxdcV6SR1jlOEz4iN_gHaIJ&mediaurl=https%3a%2f%2fwww.kids-world.com%2fimages%2f%c3%98E385.jpg&exph=749&expw=681&q=w&simid=608008970916605986&FORM=IRPRST&ck=024F1129FB787020CE9D060D58E60CBD&selectedIndex=29"
+      "image": "https://cn.bing.com/images/"
     },
     {
       "name": "桃",
@@ -33,8 +33,9 @@
         "mei_hua": 0,
         "red_tao": 6
       },
-      "info": "add_blood",
-      "image": "https://cn.bing.com/images/search?view=detailV2&ccid=SVsuxdcV&id=47C80B47F499F17B3888C97A6DA4DC6D32DC5836&thid=OIP.SVsuxdcV6SR1jlOEz4iN_gHaIJ&mediaurl=https%3a%2f%2fwww.kids-world.com%2fimages%2f%c3%98E385.jpg&exph=749&expw=681&q=w&simid=608008970916605986&FORM=IRPRST&ck=024F1129FB787020CE9D060D58E60CBD&selectedIndex=29"
+      "info": "peach---",
+      "func": "add_blood",
+      "image": "https://cn.bing.com/images/"
     }
   ]
 }

@@ -8,7 +8,7 @@ from app.models import BaseModel, model_to_dict
 class BasicCard(BaseModel):
     __tablename__ = 'BasicCard'
     name = Column('name', String(16), nullable=False)
-    kind = Column('kind', String(16), unique=True, nullable=False)
+    kind = Column('kind', String(16), unique=False, nullable=False)
     number = Column('number', SmallInteger(), nullable=False)
     func = Column('func', String(16), nullable=False)
     image = Column('image', String(32), nullable=False, default=3)

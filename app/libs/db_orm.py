@@ -27,7 +27,7 @@ class ORM:
         # 创建连接引擎，encoding定义编码，echo是(True)否(False)输出日志
         engine = create_engine(
             'mysql+pymysql://{db_user}:{db_pwd}@{db_host}:{db_port}/{db_name}?charset=utf8'.format(**self.mysql_config),
-            echo=False)
+            echo=False, poolclass=NullPool)
         return engine
 
     def create_all(self):
