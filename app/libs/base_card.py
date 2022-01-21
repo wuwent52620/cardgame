@@ -55,7 +55,7 @@ class CardMeta(type):  # todo all print must be replace by log
         if not clsname.lower().startswith('base'):
             with open(file_path, 'rb') as fl:
                 base_info = json.load(fl)
-                if clsname.lower().split('card')[0] in os.environ.get('card').split():
+                if os.environ.get('card') and clsname.lower().split('card')[0] in os.environ.get('card').split():
                     print(f'{clsname.lower()}版本有变， 即将更新数据库')
                     clsdict.update(reload=True)
                 else:
@@ -86,6 +86,7 @@ class CardMixin(object):
 
 
 class RoleCard(CardMixin, metaclass=CardMeta):
+    blood = Blood()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -160,4 +161,9 @@ def init_cards(session):
 
 if __name__ == '__main__':
     res = RoleCard.create()
-    print(res)
+    p = res.pop()
+    print(p)
+    for i in range(5):
+        p.blood -= 1
+        print(p.alive)
+
