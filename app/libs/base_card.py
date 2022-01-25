@@ -7,7 +7,6 @@ from collections import deque
 
 from tqdm import tqdm
 
-import app
 from app.config import kind_list, root_path
 from app.views.base_view import BaseHandler
 
@@ -81,15 +80,15 @@ class CardMixin(object):
             func = getattr(self, func)
             func(target)
 
-    def __repr__(self):
-        return f"{self.name}--{self.info}"
-
 
 class RoleCard(CardMixin, metaclass=CardMeta):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.alive = True
+
+    def __repr__(self):
+        return f"{self.name}--{self.info}"
 
     @classmethod
     def create(cls):
@@ -111,9 +110,9 @@ class BaseCard(CardMixin, BaseHandler, metaclass=CardMeta):
 
     @classmethod
     def create(cls):
-        cls.__slots__ = tuple(cls.base_info['cards'][0].keys())
+        cls.__slots__ = tuple(cls.base_info[0].keys())
         cards = deque()
-        for single in cls.base_info['cards']:
+        for single in cls.base_info:
             cards.append(cls(**single))
         return cards
 
@@ -126,10 +125,7 @@ class BaseCard(CardMixin, BaseHandler, metaclass=CardMeta):
         cls._aclass = getattr(mod, mod_name)
         new_base_info_cards = list()
         if cls.reload:
-            cards = session.query(cls._aclass).filter(cls._aclass.id != 0)
-            if cards:
-                for card in cards:
-                    session.delete(card)
+            session.query(cls._aclass).filter(cls._aclass.id != 0).delete()
             for card in cls.base_info['cards']:
                 cards = list()
                 for kind, number in tqdm(card['number'].items(), postfix={'version': ''}, desc=f'生成{cls.__name__}'):
@@ -142,10 +138,12 @@ class BaseCard(CardMixin, BaseHandler, metaclass=CardMeta):
             cards = session.query(cls._aclass).all()
             data = [{k: v for k, v in model_to_dict(host).items() if k not in reduce_attr} for host in cards]
             new_base_info_cards.extend(data)
+        cls.base_info = new_base_info_cards
 
 
 class BasicCard(BaseCard):
-    pass
+    def __repr__(self):
+        return f"{self.name}--{self.kind}:{self.number}"
 
 
 def init_cards(session):
@@ -155,9 +153,5 @@ def init_cards(session):
         cls.reload_card(session)
         cards += cls.create()
     random.shuffle(cards)
-    return cards
-
-
-if __name__ == '__main__':
-    res = RoleCard.create()
-    print(res)
+    roles = RoleCard.create()
+    return roles, cards

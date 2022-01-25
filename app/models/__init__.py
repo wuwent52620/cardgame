@@ -24,8 +24,9 @@ class BaseModel(Base):
     update_time = Column('update_time', DateTime(), default=datetime.now, onupdate=datetime.now)
 
 
-def model_to_dict(model):
+def model_to_dict(model, exclude=''):
     model_dict = {}
     for key, column in class_mapper(model.__class__).c.items():
-        model_dict[column.name] = getattr(model, key, None)
+        if key not in exclude:
+            model_dict[column.name] = getattr(model, key, None)
     return model_dict

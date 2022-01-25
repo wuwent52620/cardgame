@@ -6,7 +6,7 @@
       "number": {
         "black_tao": 7,
         "fang_": 6,
-        "mei_hua": 14,
+        "mei_hua": 3,
         "red_tao": 3
       },
       "info": "kill---",
@@ -16,7 +16,7 @@
     {
       "name": "闪",
       "number": {
-        "black_tao": 32,
+        "black_tao": 2,
         "fang_": 12,
         "mei_hua": 0,
         "red_tao": 3

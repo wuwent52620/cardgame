@@ -1,5 +1,4 @@
 # encoding: utf-8
-import json
 
 from app.views.base_view import BaseHandler
 from app.models.host import Host, model_to_dict
@@ -13,9 +12,12 @@ class IndexHandler(BaseHandler):
         data_list = list()
         hosts = self.session.query(BasicCard).all()
         for host in hosts:
-            data = model_to_dict(host)
-            data['create_time'] = str(data['create_time'])
-            data['update_time'] = str(data['update_time'])
+            data = model_to_dict(host, exclude='create_time,update_time')
             data_list.append(data)
+        self.response.update_data(**{str(data['id']): data for data in data_list})
 
-        self.write(json.dumps({'status': True, 'msg': '吴文童', 'data': data_list}, ensure_ascii=False))
+        self.write(self.response.data)
+
+    def post(self):
+        self.response.update(message='qwer', data='123456')
+        self.write(self.response.data)
