@@ -2,6 +2,7 @@
 import json
 
 import tornado.web
+import tornado.websocket
 
 
 class BaseResponse(object):
@@ -42,3 +43,28 @@ class BaseHandler(tornado.web.RequestHandler):
     @property
     def session(self):
         return self.application.session
+
+
+class BaseWebSocketHandler(tornado.websocket.WebSocketHandler):
+    clients = dict()
+
+    # 有新的连接时open()函数将会被调用,将客户端的连接统一放到self.clients
+    def open(self, *args, **kwargs):
+        self.id = self.get_argument("id")
+        # self.stream.set_nodelay(True)
+        self.clients[self.id] = {"id": self.id, "object": self}
+        print(self.clients)
+        print("建立连接...")
+
+    # 客户收到消息将被调用
+    def on_message(self, message):
+        print("client %s received a message: %s" % (self.id, message))
+
+    # 关闭连接时被调用
+    def on_close(self):
+        if self.id in self.clients:
+            del self.clients[self.id]
+        print("client %s is closed" % self.id)
+
+    def check_origin(self, origin):
+        return True
