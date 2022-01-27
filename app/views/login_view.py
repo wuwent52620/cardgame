@@ -3,6 +3,7 @@ import traceback
 import requests
 
 from app.views.base_view import BaseHandler
+from log.log_config import logger
 
 
 class WeixinHandler(BaseHandler):
@@ -19,7 +20,8 @@ class WeixinHandler(BaseHandler):
             self.code = self.get_body_argument('code', '')
             self.state = self.get_body_argument('state', '')
         except Exception as e:
-            print("获取code和stat参数错误：\n%s" % str(traceback.format_exc()))
+            logger.error("获取code和stat参数错误：\n%s", str(traceback.format_exc()))
+
 
         # 2.经过code换取网页受权access_token
         try:
@@ -35,7 +37,7 @@ class WeixinHandler(BaseHandler):
             access_token = res["access_token"]  # 只是呈现给你们看,能够删除这行
             openid = res["openid"]  # 只是呈现给你们看,能够删除这行
         except Exception as e:
-            print("获取access_token参数错误：\n%s" % str(traceback.format_exc()))
+            logger.error("获取access_token参数错误：\n%s", str(traceback.format_exc()))
             raise Exception('404')
 
         # 3.若是access_token超时，那就刷新
@@ -61,4 +63,4 @@ class WeixinHandler(BaseHandler):
                 value = value.encode('iso8859-1').decode('utf-8')
             """
         except Exception as e:
-            print("拉取用户信息错误：\n%s" % str(traceback.format_exc()))
+            logger.error("拉取用户信息错误：\n%s", str(traceback.format_exc()))
