@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 from app.config import kind_list, root_path
 from app.views.base_view import BaseHandler
+from log.log_config import logger
 
 card_gen = {key: deque(range(1, 13)) for key in kind_list}
 
@@ -48,17 +49,17 @@ class Blood(object):
         return getattr(instance, '_blood')
 
 
-class CardMeta(type):  # todo all print must be replace by log
+class CardMeta(type):
     def __new__(cls, clsname, clsbase, clsdict):
         file_path = os.path.join(root_path, 'card', f'{clsname.lower()}.json')
         if not clsname.lower().startswith('base'):
             with open(file_path, 'rb') as fl:
                 base_info = json.load(fl)
                 if clsname.lower().split('card')[0] in os.environ.get('card').split():
-                    print(f'{clsname.lower()}版本有变， 即将更新数据库')
+                    logger.info(f'{clsname.lower()}版本有变， 即将更新数据库')
                     clsdict.update(reload=True)
                 else:
-                    print(f'{clsname.lower()}版本未变更')
+                    logger.info(f'{clsname.lower()}版本有变， 即将更新数据库')
                     clsdict.update(reload=False)
 
                 clsdict.update(base_info=base_info)
