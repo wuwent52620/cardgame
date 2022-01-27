@@ -1,0 +1,127 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codg]
+
+*.sw[op]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+allure_results/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# PyBuilder
+target/
+
+# Mac
+.DS_Store
+
+#
+# devel
+#
+.idea/
+.vscode/
+
+.project
+.pydevproject
+.settings/
+.pytest_cache
+
+.virtualenv
+env
+.env
+venv
+.venv
+node_modules/
+
+GeoLite2-Country.mmdb
+GeoLite2-City.mmdb
+
+# Book build output
+_book
+
+# eBook build output
+*.epub
+*.mobi
+*.pdf
+
+
+# docker
+docker_volumes
+
+/dev.cfg
+config_local.py
+/local/
+/pki/
+*.pem
+*.p7
+
+17monipdb.dat
+17monipdb.datx
+ipipfree.ipdb
+phone.dat
+/local.mk
+
+/fack-flask-logging.txt
+/.dir-locals.el
+*.elc
+
+/config_pytest.py
+/config_pytest.pyg
+
+/.docker-mysql-data
+/.docker-venv
+
+/config_test.py
+/config_test.docker.py
+
+/.env
+/.docker*
+docker-compose.yml
+
+pytest.ini
+/test.py
+
+skaffold-job*.yaml
+
+.history
+select-*.sql
+logging_config.py
