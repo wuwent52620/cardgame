@@ -59,7 +59,7 @@ class CardMeta(type):
                     logger.info(f'{clsname.lower()}版本有变， 即将更新数据库')
                     clsdict.update(reload=True)
                 else:
-                    logger.info(f'{clsname.lower()}版本有变， 即将更新数据库')
+                    logger.info(f'{clsname.lower()}版本未改变， 直接读取数据库')
                     clsdict.update(reload=False)
 
                 clsdict.update(base_info=base_info)
@@ -83,6 +83,8 @@ class CardMixin(object):
 
 
 class RoleCard(CardMixin, metaclass=CardMeta):
+
+    blood = Blood()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

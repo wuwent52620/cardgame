@@ -4,6 +4,7 @@ from app.views.base_view import BaseHandler
 from app.models.host import Host, model_to_dict
 from app.models.role import Role
 from app.models.card import BasicCard
+from log.log_config import logger
 
 
 class IndexHandler(BaseHandler):
