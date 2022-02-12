@@ -1,5 +1,7 @@
 # encoding: utf-8
 import os
+import random
+from collections import deque, Iterable
 from contextlib import contextmanager
 
 import tornado.web
@@ -13,6 +15,7 @@ from tornado.web import Application as tornadoApp
 from app.config import config
 from app.urls import urls
 from app.libs.db_orm import ORM
+from utils.decorator import singleton
 
 orm = ORM()
 
@@ -52,6 +55,57 @@ class Application(tornadoApp):
 
         # 初使化session，方便在调用(self.session.query())
         self.session = orm.create_session()
+
+
+class CardDeque(deque):
+    __give_way = {'head': 'popleft', 'foot': 'pop'}
+    __get_way = {'head': 'extendleft', 'foot': 'extend'}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+        self.name = kwargs.get('name')
+
+    def give(self, num=1, way='head', define=None):
+        try:
+            if define and isinstance(define, int):
+                return self[define]
+            func = getattr(self, self.__give_way.get(way))
+            cards = [func() for _ in range(num)]
+            return cards
+        except IndexError as e:
+            return None
+
+    def get(self, cards, way='head'):
+        if not isinstance(cards, Iterable):
+            cards = [cards]
+        func = getattr(self, self.__get_way.get(way))
+        func(cards)
+
+    def shuffle(self):
+        random.shuffle(self)
+
+
+@singleton
+class Game(object):
+    __users = []
+    __cards = {}
+
+    def __init__(self):
+        self.users = self.__users
+        self.cards = self.__cards
+
+    @classmethod
+    def add_users(cls, args):
+        cls.__users.append(args)
+
+    @classmethod
+    def add_cards(cls, **kwargs):
+        cls.__cards.update(**kwargs)
+
+    @classmethod
+    def create(cls):
+        if len(cls.__users) == 4:
+            return cls()
 
 
 # 2. 自定义服务

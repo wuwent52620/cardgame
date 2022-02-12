@@ -8,8 +8,9 @@ from collections import deque
 from tqdm import tqdm
 
 from app.config import kind_list, root_path
-from app.views.base_view import BaseHandler
+from app import CardDeque
 from log.log_config import logger
+from utils.decorator import singleton, keywords
 
 card_gen = {key: deque(range(1, 13)) for key in kind_list}
 
@@ -81,9 +82,12 @@ class CardMixin(object):
             func = getattr(self, func)
             func(target)
 
+    @classmethod
+    def get(cls, id):
+        return cls(id=id)
+
 
 class RoleCard(CardMixin, metaclass=CardMeta):
-
     blood = Blood()
 
     def __init__(self, **kwargs):
@@ -96,9 +100,11 @@ class RoleCard(CardMixin, metaclass=CardMeta):
     @classmethod
     def create(cls):
         cls.__slots__ = tuple(cls.base_info['cards'][0].keys())
-        cards = deque()
+        cards = CardDeque()
+        cls.__cards = dict()
         for single in cls.base_info['cards']:
             cards.append(cls(**single))
+            cls.__cards.z
         random.shuffle(cards)
         return cards
 
@@ -108,13 +114,13 @@ class RoleCard(CardMixin, metaclass=CardMeta):
             pass
 
 
-class BaseCard(CardMixin, BaseHandler, metaclass=CardMeta):
+class BaseCard(CardMixin, metaclass=CardMeta):
     _aclass = None
 
     @classmethod
     def create(cls):
         cls.__slots__ = tuple(cls.base_info[0].keys())
-        cards = deque()
+        cards = CardDeque()
         for single in cls.base_info:
             cards.append(cls(**single))
         return cards
@@ -151,7 +157,7 @@ class BasicCard(BaseCard):
 
 def init_cards(session):
     cls_list = BaseCard.__subclasses__()
-    cards = deque()
+    cards = CardDeque()
     for cls in cls_list:
         cls.reload_card(session)
         cards += cls.create()

@@ -20,7 +20,7 @@ stdout_handler = logging.StreamHandler(sys.stdout)
 stdout_handler.setLevel(logging.DEBUG)
 stdout_handler.setFormatter(piv_log_fmt)
 
-file_stream = RotatingFileHandler(log_file_name, maxBytes=1024, backupCount=3, encoding='utf-8')
+file_stream = RotatingFileHandler(log_file_name, maxBytes=1024*1024*10, backupCount=3, encoding='utf-8')
 file_stream.setLevel(logging.DEBUG)
 file_stream.setFormatter(piv_log_fmt)
 file_stream.namer = lambda x: log_file_name + x.split('.')[-1] + '.log'

@@ -5,9 +5,9 @@
       "name": "杀",
       "number": {
         "black_tao": 7,
-        "fang_": 6,
-        "mei_hua": 3,
-        "red_tao": 3
+        "fang_": 5,
+        "mei_hua": 2,
+        "red_tao": 1
       },
       "info": "kill---",
       "func": "reduce_blood",
@@ -17,8 +17,8 @@
       "name": "闪",
       "number": {
         "black_tao": 2,
-        "fang_": 12,
-        "mei_hua": 0,
+        "fang_": 8,
+        "mei_hua": 1,
         "red_tao": 3
       },
       "info": "flash---",
